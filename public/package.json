@@ -1,0 +1,26 @@
+{
+  "name": "vue3-img-drag-sort",
+  "version": "0.0.0",
+  "description": "vue3 图片拖拽排序组件",
+  "private": false,
+  "author": "zxiaogong",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "lib",
+    "type"
+  ],
+  "main": "lib/img-drag-sort.es.js",
+  "types": "type/img-drag-sort.es.d.ts",
+  "keywords": [
+    "vue3",
+    "image drag sort",
+    "sort"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zxiaogong/vue3-img-drag-sort-component"
+  }
+}
