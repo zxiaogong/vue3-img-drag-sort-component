@@ -1,6 +1,8 @@
 # vue3-img-drag-sort
 基于vue3的图片拖拽排序组件
 
+### 效果图
+![image](https://raw.githubusercontent.com/zxiaogong/vue3-img-drag-sort-component/master/demonstration.gif)
 ## 安装
 
 
@@ -13,47 +15,43 @@
 
 ```html
 <script setup lang="tsx">
-import {ref} from "vue"
-import ImgDragSort from "vue3-img-drag-sort"
-/** imgs是一个包含图片的数组 */
+import { ref } from "vue"
+import ImgDragSort from "./components/imgDragSort/index"
+// import ImgDragSort from "../public/lib/img-drag-sort.es.js"
 import imgs from "./static/index"
 import { LazyloadImg } from 'vue3-lazyload-img';
 const getImg = ref(false)
 
 /**如果vue文件中需要这样写，记得第一行设置为 lang="tsx", 如果在tsx文件中使用，则可不需要这样做*/
-function CustomLazyloadImg(url: string): void {
+function CustomLazyloadImg(url: string,key:number): void {
   this.url = url
+  this.key = key
   this.component = (): JSX.Element => {
     return (
-      <LazyloadImg src={this.url} />
+      <LazyloadImg src={this.url}/>
     )
   }
 }
 
-/**排序好的内容*/
-const onChange = (list:Array<any>)=>{
+const onChange = (list: Array<any>) => {
   console.log(list)
 }
 
-/**设置是否获取排序好的内容*/
-const getSortImgs=()=>{
-  const next = getImg.value
-  getImg.value=!getImg.value
+const getSortImgs = () => {
+  getImg.value = !getImg.value
 }
 
 </script>
 
 <template>
   <div class="root">
-    <button
-      v-on:click="getSortImgs()"
-    >
-      获取排序后的内容
+    <button v-on:click="getSortImgs()">
+      获取排序后的内容{{getImg}}
     </button>
-    <div style="padding-top: 500px;">
+    <div style="padding-top: 100px;width: 340px;height: 500px;">
       <ImgDragSort 
-      :img-width="230" 
-      :img-heigth="230" 
+      :img-width="100" 
+      :img-heigth="100" 
       :img-distance="10" 
       :is-custom-img="true" 
       :vacancy-style="{
@@ -63,14 +61,13 @@ const getSortImgs=()=>{
       :init-img-list="imgs.map((item,index)=>{
               return {
                 key:index,
-                /**如果不需要自定义图片内容，可直接通过,imgUrl传入图片链接即可(切记 is-custom-img 必须设置为false)*/
-                customImg:new CustomLazyloadImg(item).component,
-                //imgUrl:item,
+                /**如果不需要自定义图片内容，可直接通过,imgUrl传入图片链接即可(切记 is-custom-img 设置为false)*/
+                customImg:new CustomLazyloadImg(item,index).component,
+                // imgUrl:item,
               }
-      })"
-      :on-change="onChange"
-      :is-get-sort-imgs="getImg.valueOf"
-      />
+      })" 
+      :on-change="onChange" 
+      :is-get-sort-imgs="getImg" />
     </div>
   </div>
 </template>
@@ -82,6 +79,7 @@ const getSortImgs=()=>{
   margin-top: 800px;
 }
 </style>
+
 
 ```
 
@@ -100,7 +98,7 @@ ImgDragSort
 | `img-distance`      | `Number` | **非必填**. 图片间距，默认为0 |
 | `img-width`      | `Number` | **必填**. 图片宽 |
 | `img-heigth`      | `Number` | **必填**. 图片高 |
-| `is-customImg`      | `Boolean` | **非必填**. 是否使用自定义图片组件，需要配合customImg使用（该api考虑出现图片较多需要使用图片懒加载组件的情况） |
+| `is-customImg`      | `Boolean` | **非必填**. 是否使用自定义图片组件，需要配合customImg使用（示例以懒加载组件作为自定义图） |
 | `vacancy-style`      | 请看表 vacancyStyle | **非必填**. 空位的阴影样式 |
 | `on-change`      | `(imgList)=>{}` | **非必填**. 排序后返回的结果，有300毫秒的延迟 |
 | `is-get-sort-imgs`      | `Boolean` | **非必填**. 是否获取排序后的结果，默认ture。当由false更改为true时，会调用on-chang函数。（排序可能会耗费性能，如果不是每次修改顺序后都需要获取排序结果，可以使用isGetSortImgs进行控制，可以参考示例） |

@@ -251,7 +251,7 @@ export default defineComponent({
             }
         }
         const CustomImgCom = (propsCom: any) => {
-            return (propsCom.content ? <propsCom.content></propsCom.content> : null)
+            return (propsCom.content ? propsCom.content() : null)
         }
 
         return () => {
@@ -308,9 +308,9 @@ export default defineComponent({
                                     >
                                         {
                                             props.isCustomImg ?
-                                                <CustomImgCom content={waitingSortImgList.value[index].customImg || null}></CustomImgCom>
+                                                <CustomImgCom content={item.customImg || null}></CustomImgCom>
                                                 :
-                                                <img class="content-img" src={waitingSortImgList.value[index].imgUrl as string} />
+                                                <img class="content-img" src={item.imgUrl as string} />
                                         }
                                     </div>
                                     {
