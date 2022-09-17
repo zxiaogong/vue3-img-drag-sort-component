@@ -32,16 +32,16 @@ const getSortImgs = () => {
     <button v-on:click="getSortImgs()">
       获取排序后的内容{{getImg}}
     </button>
-    <div style="padding-top: 500px;width: 730px;height: 800px;">
-      <ImgDragSort :img-width="230" :img-heigth="230" :img-distance="10" :is-custom-img="true" :vacancy-style="{
+    <div style="padding-top: 100px;width: 340px;height: 500px;">
+      <ImgDragSort :img-width="100" :img-heigth="100" :img-distance="10" :is-custom-img="false" :vacancy-style="{
         backgroundColor:'#4169E1',
         opacity:'0.2'
       }" :init-img-list="imgs.map((item,index)=>{
               return {
                 key:index,
                 /**如果不需要自定义图片内容，可直接通过,imgUrl传入图片链接即可(切记 is-custom-img 设置为false)*/
-                customImg:new CustomLazyloadImg(item).component,
-                // imgUrl:item,
+                // customImg:new CustomLazyloadImg(item).component,
+                imgUrl:item,
               }
       })" :on-change="onChange" :is-get-sort-imgs="getImg" />
     </div>

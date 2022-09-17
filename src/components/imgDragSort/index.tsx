@@ -85,7 +85,7 @@ export default defineComponent({
 
         onMounted(() => {
             /**计算一行几个图片 */
-            rowImgNum = Math.floor((dragSortBox.value?.clientWidth || 0) / (230 + 10))
+            rowImgNum = Math.floor((dragSortBox.value?.clientWidth || 0) / (props.imgWidth + props.imgDistance))
         })
 
         watch(
