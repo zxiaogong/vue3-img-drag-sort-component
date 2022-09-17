@@ -1093,6 +1093,11 @@ vue-tsc@^0.39.5:
     "@volar/vue-language-core" "0.39.5"
     "@volar/vue-typescript" "0.39.5"
 
+vue3-img-drag-sort@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.npmjs.org/vue3-img-drag-sort/-/vue3-img-drag-sort-0.0.0.tgz#41bf68a7e6b7d09ed8f1d56266ed96c48a239b8a"
+  integrity sha512-alq68245QobPS/JwHX6W67P5QJpSblAelXBI4F6krWMQhT/um7+JLFDaNqY2lZRVrMaisqK6P9geqsAxsIJ8/A==
+
 vue3-lazyload-img@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/vue3-lazyload-img/-/vue3-lazyload-img-0.1.2.tgz#c3fa82dbf59b062f5ccb278c1945eee11fea7ffc"

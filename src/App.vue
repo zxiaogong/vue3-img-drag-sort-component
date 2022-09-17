@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import { ref } from "vue"
-import ImgDragSort from "./components/imgDragSort/index"
-// import ImgDragSort from "../public/lib/img-drag-sort.es.js"
+// import ImgDragSort from "./components/imgDragSort/index"
+import ImgDragSort from "vue3-img-drag-sort"
 import imgs from "./static/index"
 import { LazyloadImg } from 'vue3-lazyload-img';
 const getImg = ref(false)
