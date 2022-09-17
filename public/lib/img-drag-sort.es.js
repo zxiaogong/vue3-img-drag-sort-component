@@ -1,5 +1,5 @@
 import "./style.css";
-import { defineComponent as Y, ref as d, onMounted as F, watch as G, onUpdated as A, createVNode as u, Fragment as K } from "vue";
+import { defineComponent as Y, ref as r, onMounted as F, watch as G, onUpdated as A, createVNode as o, Fragment as K } from "vue";
 const U = Y({
   props: {
     initImgList: {
@@ -39,24 +39,24 @@ const U = Y({
     }
   },
   setup(t) {
-    const s = d(t.initImgList), v = d(void 0), g = d(-1), $ = d(0), x = d(0), o = d(-1);
-    let C = 0, D = 0, M = "0", w = "0", f = 0, b = d(0), S = !1, y = !1, L = null, T = !1;
+    const d = r(t.initImgList), s = r(void 0), g = r(-1), x = r(0), $ = r(0), u = r(-1);
+    let D = 0, C = 0, M = "0", w = "0", v = 0, b = r(0), S = !1, y = !1, L = null, T = !1;
     F(() => {
       var i;
-      f = Math.floor((((i = v.value) == null ? void 0 : i.clientWidth) || 0) / (230 + 10));
+      v = Math.floor((((i = s.value) == null ? void 0 : i.clientWidth) || 0) / (t.imgWidth + t.imgDistance));
     }), G(() => [t.initImgList, t.isGetSortImgs], ([i, m], [e, n]) => {
-      i.valueOf.length !== e.valueOf.length && (s.value = i), !n && m && t.onChange && t.onChange(W(s.value));
+      i.valueOf.length !== e.valueOf.length && (d.value = i), !n && m && t.onChange && t.onChange(W(d.value));
     });
     const H = (i) => {
       g.value !== -1 && k(i);
     }, N = (i, m) => {
-      var a, h, I;
-      S = !0, C = ((a = v == null ? void 0 : v.value) == null ? void 0 : a.offsetTop) || 0, D = ((h = v == null ? void 0 : v.value) == null ? void 0 : h.offsetLeft) || 0;
-      const e = i.pageX - D, n = i.pageY - C;
+      var l, f, I;
+      S = !0, D = ((l = s == null ? void 0 : s.value) == null ? void 0 : l.offsetTop) || 0, C = ((f = s == null ? void 0 : s.value) == null ? void 0 : f.offsetLeft) || 0;
+      const e = i.pageX - C, n = i.pageY - D;
       M = String(e / (t.imgWidth + t.imgDistance)).split(".")[1], w = String(n / (t.imgHeigth + t.imgDistance)).split(".")[1];
-      const l = i.path, c = l.length;
-      for (let r = 0; r < c; r++)
-        if (typeof l[r].className == "string" && ((I = l[r].className) == null ? void 0 : I.indexOf("imgBox"))) {
+      const a = i.path, c = a.length;
+      for (let h = 0; h < c; h++)
+        if (typeof a[h].className == "string" && ((I = a[h].className) == null ? void 0 : I.indexOf("imgBox"))) {
           k(i);
           break;
         }
@@ -69,25 +69,25 @@ const U = Y({
       else
         return;
       b.value = 0.3;
-      const e = o.value, n = s.value;
-      let l = [];
+      const e = u.value, n = d.value;
+      let a = [];
       if (g.value > e) {
-        const h = n.slice(0, e), I = n.slice(e + 1, g.value), r = n.slice(g.value + 1, n.length);
-        l = h.concat(n[g.value]).concat(n[e]).concat(I).concat(r);
+        const f = n.slice(0, e), I = n.slice(e + 1, g.value), h = n.slice(g.value + 1, n.length);
+        a = f.concat(n[g.value]).concat(n[e]).concat(I).concat(h);
       } else if (g.value < e) {
-        const h = n.slice(0, g.value), I = n.slice(g.value + 1, e - 1), r = n.slice(e, n.length);
-        l = h.concat(I).concat(n[e - 1]).concat(n[g.value]).concat(r);
+        const f = n.slice(0, g.value), I = n.slice(g.value + 1, e - 1), h = n.slice(e, n.length);
+        a = f.concat(I).concat(n[e - 1]).concat(n[g.value]).concat(h);
       }
-      let c = Math.floor(e / f), a = e - c * f;
-      g.value > e ? a += 1 : a || (a = f, c -= 1), g.value === e && (g.value % f === 0 ? (c += 1, a -= 2) : a += 1), $.value = c * (t.imgHeigth + t.imgDistance), x.value = (a - 1) * (t.imgWidth + t.imgDistance), setTimeout(() => {
-        o.value = -1, e !== g.value && l.length && (s.value = l), b.value = 0, g.value = -1, t.onChange && t.isGetSortImgs && t.onChange(W(l));
+      let c = Math.floor(e / v), l = e - c * v;
+      g.value > e ? l += 1 : l || (l = v, c -= 1), g.value === e && (g.value % v === 0 ? (c += 1, l -= 2) : l += 1), x.value = c * (t.imgHeigth + t.imgDistance), $.value = (l - 1) * (t.imgWidth + t.imgDistance), setTimeout(() => {
+        u.value = -1, e !== g.value && a.length && (d.value = a), b.value = 0, g.value = -1, t.onChange && t.isGetSortImgs && t.onChange(W(a));
       }, 300);
     }, W = (i) => {
       const m = t.initImgList, e = m.length;
-      return i.map((l, c) => {
-        for (let a = 0; a < e; a++)
-          if (l.imgKey === m[a].imgKey)
-            return m[a];
+      return i.map((a, c) => {
+        for (let l = 0; l < e; l++)
+          if (a.imgKey === m[l].imgKey)
+            return m[l];
       });
     };
     A(() => {
@@ -96,45 +96,45 @@ const U = Y({
     const k = (i) => {
       if (!S)
         return;
-      const m = i.pageX - D, e = i.pageY - C, n = m - Number(`0.${M}`) * (t.imgWidth + t.imgDistance) + 5, l = e - Number(`0.${w}`) * (t.imgHeigth + t.imgDistance) + 5;
-      $.value = l, x.value = n;
-      const c = Math.round(n / (t.imgWidth + t.imgDistance + t.imgDistance)), a = Math.round(l / (t.imgHeigth + t.imgDistance + t.imgDistance)), h = f * a;
-      y && g.value - h < c ? o.value = f * a + c + 1 : o.value = f * a + c;
-    }, X = (i) => i.content ? u(i.content, null, null) : null;
+      const m = i.pageX - C, e = i.pageY - D, n = m - Number(`0.${M}`) * (t.imgWidth + t.imgDistance) + 5, a = e - Number(`0.${w}`) * (t.imgHeigth + t.imgDistance) + 5;
+      x.value = a, $.value = n;
+      const c = Math.round(n / (t.imgWidth + t.imgDistance + t.imgDistance)), l = Math.round(a / (t.imgHeigth + t.imgDistance + t.imgDistance)), f = v * l;
+      y && g.value - f < c ? u.value = v * l + c + 1 : u.value = v * l + c;
+    }, X = (i) => i.content ? i.content() : null;
     return () => {
-      const i = s.value.length;
-      return u("div", {
+      const i = d.value.length;
+      return o("div", {
         class: "imgDragSort-root",
         onMousemove: H,
-        ref: v
-      }, [s.value.map((m, e) => {
+        ref: s
+      }, [d.value.map((m, e) => {
         let n = {
           transition: "0.3s"
         };
-        const l = o.value === e;
+        const a = u.value === e;
         return g.value === e && (n = {
           position: "absolute",
-          top: `${$.value}px`,
-          left: `${x.value}px`,
+          top: `${x.value}px`,
+          left: `${$.value}px`,
           transition: `${b.value}s`,
           zIndex: 1
-        }), u(K, null, [u("div", {
+        }), o(K, null, [o("div", {
           key: e + "copy",
           style: {
-            width: l ? `${t.imgWidth}px` : "0px",
+            width: a ? `${t.imgWidth}px` : "0px",
             height: `${t.imgHeigth}px`,
-            marginLeft: l ? `${t.imgDistance}px` : "0px",
+            marginLeft: a ? `${t.imgDistance}px` : "0px",
             marginTop: `${t.imgDistance}px`
           }
-        }, [u("div", {
+        }, [o("div", {
           style: {
-            width: l ? `${t.imgWidth}px` : "0px",
+            width: a ? `${t.imgWidth}px` : "0px",
             height: `${t.imgHeigth}px`,
-            transition: y && l ? "0.5s" : "0s",
+            transition: y && a ? "0.5s" : "0s",
             backgroundColor: t.vacancyStyle.backgroundColor,
             opacity: t.vacancyStyle.opacity
           }
-        }, null)]), u("div", {
+        }, null)]), o("div", {
           class: "sort-img-box",
           key: e,
           onMousedown: (c) => N(c, e),
@@ -146,24 +146,24 @@ const U = Y({
             marginTop: `${t.imgDistance}px`,
             ...n
           }
-        }, [t.isCustomImg ? u(X, {
-          content: s.value[e].customImg || null
-        }, null) : u("img", {
+        }, [t.isCustomImg ? o(X, {
+          content: m.customImg || null
+        }, null) : o("img", {
           class: "content-img",
-          src: s.value[e].imgUrl
-        }, null)]), e + 1 === i && u("div", {
+          src: m.imgUrl
+        }, null)]), e + 1 === i && o("div", {
           key: e + 1 + "copy",
           style: {
-            width: o.value === e + 1 ? `${t.imgWidth}px` : "0px",
+            width: u.value === e + 1 ? `${t.imgWidth}px` : "0px",
             height: `${t.imgHeigth}px`,
-            marginLeft: o.value === e + 1 ? `${t.imgDistance}px` : "0px",
+            marginLeft: u.value === e + 1 ? `${t.imgDistance}px` : "0px",
             marginTop: `${t.imgDistance}px`
           }
-        }, [u("div", {
+        }, [o("div", {
           style: {
-            width: o.value === e + 1 ? `${t.imgWidth - t.imgDistance}px` : "0px",
+            width: u.value === e + 1 ? `${t.imgWidth - t.imgDistance}px` : "0px",
             height: `${t.imgHeigth}px`,
-            transition: y && o.value === e + 1 ? "0.5s" : "0s",
+            transition: y && u.value === e + 1 ? "0.5s" : "0s",
             backgroundColor: t.vacancyStyle.backgroundColor,
             opacity: t.vacancyStyle.opacity
           }
